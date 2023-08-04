@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="./css/tailwind.min.css">
+
+    <title>Curriculum</title>
+    <style>
+        .a{
+            color:#ea6b17;
+        }
+    </style>
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="dark:bg-[#111111] bg-homeBg dark:bg-homeTwoBg-dark min-h-screen bg-no-repeat bg-center bg-cover bg-fixed md:pb-16 w-full">
+        <div class="container grid grid-cols-12 md:gap-10 justify-between">
+            <!-- sidber personal info -->
+            <div class="col-span-12 lg:col-span-4 lg:block h-screen sticky lg:top-44">
+                <div class="w-full mb-6 lg:mb-0 mx-auto relative bg-white text-center dark:bg-[#111111] px-6 rounded-[20px] mt-[180px] md:mt-[220px] lg:mt-0">
+                    
+                    <button id="theme-toggle" type="button" style="float: right;" class="dark-light-btn lg:hidden mr-3 lg:-mt-[140px]">
+                        <i id="theme-toggle-dark-icon" class="fa-solid text-xl fa-moon hidden"></i>
+                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-xl hidden"></i>
+                    </button>
+                    <!-- profile image -->
+                    <img src="https://avatars.githubusercontent.com/u/89329216?v=4" class="w-[240px] absolute left-[50%] transform -translate-x-[50%] h-[240px] drop-shadow-xl mx-auto rounded-[20px] lg:-mt-[140px]" alt="about">
+                    <div class="pt-[100px] pb-8">
+                        <h2 class="mt-6 mb-1 text-[26px] font-semibold dark:text-white"> ${preferents.getString("userName","")} </h2>
+                        <h3 class="mb-4 text-[#7B7B7B] inline-block dark:bg-[#1D1D1D] px-5 py-1.5 rounded-lg dark:text-[#A6A6A6]">${preferents.getString("userOcupation","")} </h3>
+                        <div class="flex justify-center space-x-3">
+                            <!-- facebook icon and link -->
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                                <span class="socialbtn">
+                                    <i class="fa-brands fa-instagram" style="color: #ff751a;"></i>
+                                </span>
+                            </a>
+                            <!-- twitter icon and link -->
+                            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+                                <span class="socialbtn text-[#1C9CEA]">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </span>
+                            </a>
+                            <!-- dribbble icon and link -->
+                            <a href="https://dribbble.com/" target="_blank" rel="noopener noreferrer">
+                                <span class="socialbtn text-[#e14a84]">
+                                    <i class="fa-brands fa-dribbble"></i>
+                                </span>
+                            </a>
+                            <!-- linkedin icon and link -->
+                            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+                                <span class="socialbtn text-[#0072b1]">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </span>
+                            </a>
+                        </div>
+                        <!-- personal infomation start -->
+                        <div class="p-7 rounded-2xl mt-7 bg-[#F3F6F6] dark:bg-[#1D1D1D]">
+                            <div class="flex border-b border-[#E3E3E3] dark:border-[#3D3A3A] pb-2.5">
+                                <span class="socialbtn bg-white dark:bg-black text-[#E93B81] shadow-md">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </span>
+                                <div class="text-left ml-2.5">
+                                    <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> Teléfono </p>
+                                    <p class="dark:text-white">${preferents.getString("phoneNumber","")}</p>
+                                </div>
+                            </div>
+                            <div class="flex border-b border-[#E3E3E3] dark:border-[#3D3A3A] py-2.5">
+                                <span class="socialbtn bg-white dark:bg-black text-[#6AB5B9] shadow-md">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                </span>
+                                <div class="text-left ml-2.5">
+                                    <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> Email </p>
+                                    <p class="dark:text-white">${preferents.getString("email","")}</p>
+                                </div>
+                            </div>
+                            <div class="flex border-b border-[#E3E3E3] dark:border-[#3D3A3A] py-2.5">
+                                <span class="socialbtn bg-white dark:bg-black text-[#FD7590] shadow-md">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </span>
+                                <div class="text-left ml-2.5">
+                                    <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> País </p>
+                                    <p class="dark:text-white">${preferents.getString("cotry","")}</p>
+                                </div>
+                            </div>
+                            <div class="flex py-2.5">
+                                <span class="socialbtn bg-white dark:bg-black text-[#C17CEB] shadow-md">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="text-left ml-2.5">
+                                    <p class="text-xs text-[#44566C] dark:text-[#A6A6A6]"> Nacimiento </p>
+                                    <p class="dark:text-white">${preferents.getString("birthday","")}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- personal infomation end-->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-span-12 lg:col-span-8 lg:mt-14">
+                <!-- about me section start -->
+                <div>
+                    <div class="lg:rounded-2xl bg-white dark:bg-[#111111]">
+                        <div class="pt-12 md:py-12 px-2 sm:px-5 md:px-10 lg:px-14">
+                            <!-- about page title -->
+                            <div class="flex justify-between">
+                                <h2 class="after-effect">Acerca de mí &nbsp;&nbsp;</h2>  
+                                <!-- dark and light mode toggle -->
+                                <button id="theme-toggle2" type="button" class="dark-light-btn hidden lg:block ">
+                                    <i id="theme-toggle-dark-icon2" class="fa-solid text-xl fa-moon hidden"></i>
+                                    <i id="theme-toggle-light-icon2" class="fa-solid fa-sun text-xl hidden"></i>
+                                </button>
+                            </div>
+                            
+
+                            <div class="lg:grid grid-cols-12 md:gap-10 pt-4 md:pt-[30px] items-center">
+                                <div class="col-span-12 space-y-2.5">
+                                    <div class="lg:mr-16">
+                                        <p class="text-[#44566c] dark:text-color-910 leading-7"> Soy un desarrollador de software especializado en el desarrollo de aplicaciones para dispositivos Android. Tengo experiencia en el diseño, desarrollo y prueba de aplicaciones móviles para la plataforma Android, utilizando lenguajes de programación como Java o Kotlin.</p>
+                                        <p class="text-[#44566c] leading-7 mt-2.5 dark:text-color-910">Me apasiona crear aplicaciones innovadoras y funcionales que brinden una excelente experiencia de usuario en dispositivos Android.</p>
+                                    </div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- what i do section start -->
+                        <div class="pb-12 px-2 sm:px-5 md:px-10 lg:px-14">
+                            <h3 class="text-[35px] dark:text-white font-bold font-robotoSlab pb-5"> ¡Lo que hago! </h3>
+                            <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
+                                <div class="about-box bg-[#fcf4ff] dark:bg-transparent">
+                                    <img class="w-10 h-10 object-contain block" src="./static/icon.svg" alt="icon">
+                                    <div class="space-y-2">
+                                        <h3 class="dark:text-white text-[22px] font-semibold"> Ui/Ux </h3>
+                                        <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor sit
+                                            amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-box bg-[#fefaf0] dark:bg-transparent">
+                                    <img class="w-10 h-10 object-contain block" src="https://raw.githubusercontent.com/rafacu-dev/mi-curriculum/main/static/icon1.svg" alt="icon">
+                                    <div class="space-y-2">
+                                        <h3 class="dark:text-white text-[22px] font-semibold"> Desarrollo de aplicaciones </h3>
+                                        <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor sit
+                                            amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-box bg-[#fcf4ff] dark:bg-transparent">
+                                    <img class="w-10 h-10 object-contain block" src="https://raw.githubusercontent.com/rafacu-dev/mi-curriculum/main/static/icon2.svg" alt="icon">
+                                    <div class="space-y-2">
+                                        <h3 class="dark:text-white text-[22px] font-semibold"> Edición </h3>
+                                        <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor sit
+                                            amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-box bg-[#fff4f4] dark:bg-transparent">
+                                    <img class="w-10 h-10 object-contain block" src="https://raw.githubusercontent.com/rafacu-dev/mi-curriculum/main/static/icon3.svg" alt="icon">
+                                    <div class="space-y-2">
+                                        <h3 class="dark:text-white text-[22px] font-semibold"> Fotografía </h3>
+                                        <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor sit
+                                            amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-box bg-[#fff0f8] dark:bg-transparent">
+                                    <img class="w-10 h-10 object-contain block" src="https://raw.githubusercontent.com/rafacu-dev/mi-curriculum/main/static/icon4.svg" alt="icon">
+                                    <div class="space-y-2">
+                                        <h3 class="dark:text-white text-[22px] font-semibold"> Gestión </h3>
+                                        <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor sit
+                                            amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-box bg-[#f3faff] dark:bg-transparent">
+                                    <img class="w-10 h-10 object-contain block" src="https://raw.githubusercontent.com/rafacu-dev/mi-curriculum/main/static/icon5.svg" alt="icon">
+                                    <div class="space-y-2">
+                                        <h3 class="dark:text-white text-[22px] font-semibold"> Desarrollo web </h3>
+                                        <p class="leading-8 text-gray-lite dark:text-[#A6A6A6]"> Lorem ipsum dolor sit
+                                            amet, consectetuer adipiscing elit, sed diam euismod volutpat. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- what i do section start -->
+                        <div class="px-2 sm:px-5 md:px-10 lg:px-14 pb-12">
+                            <div class="bg-[#F8FBFB] dark:bg-[#0D0D0D] max-w-full h-auto py-10 rounded-xl slides">
+                                <h3 class="text-center dark:text-white text-6xl mb-3 font-semibold"> Portafolio </h3>
+                                <!-- slider and slider items -->
+                                <div class="carousel">
+                                    <div class="carousel-inner text-center">
+                                        <a class="carousel-item" href="https://apklis.cu/application/com.drecom.tasadecambio">
+                                            <img class="carousel-item-img" src="https://archive.apklis.cu/application/icon/com.drecom.tasadecambio-v1.png_140" alt="Imagen 1">
+                                            <p class="mt-2.5 mb-1 text-[14px] font-semibold dark:text-white"> Tasa de cambio </p>
+                                        </a>
+                                        <a class="carousel-item" href="https://apklis.cu/application/com.drecom.parolealerta">
+                                            <img class="carousel-item-img" src="https://archive.apklis.cu/application/icon/com.drecom.parolealerta-v1.png_140" alt="Imagen 1">
+                                            <p class="mt-2.5 mb-1 text-[14px] font-semibold dark:text-white"> Parole Alerta </p>
+                                        </a>
+                                        <a class="carousel-item" href="https://apklis.cu/application/com.drecom.micatalogopro">
+                                            <img class="carousel-item-img" src="https://archive.apklis.cu/application/icon/com.drecom.micatalogopro-v1.png_140" alt="Imagen 1">
+                                            <p class="mt-2.5 mb-1 text-[14px] font-semibold dark:text-white"> MiCatálogo </p>
+                                        </a>
+                                        <a class="carousel-item" href="https://apklis.cu/application/com.drecom.searchlink">
+                                            <img class="carousel-item-img" src="https://archive.apklis.cu/application/icon/com.drecom.searchlink-v1.png_140" alt="Imagen 1">
+                                            <p class="mt-2.5 mb-1 text-[14px] font-semibold dark:text-white"> SearchLink </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- about me section start -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- main js -->
+    <script type = "text/JavaScript">
+        (function ($) {
+        "use strict";
+        var bostami = {
+            m: function (e) {
+            bostami.d();
+            bostami.methods();
+            },
+
+            d: function (e) {
+            (this._window = $(window)),
+                (this._document = $(document)),
+                (this._body = $("body")),
+                (this._html = $("html"));
+            },
+            methods: function (e) {
+            bostami.darkToLight();
+            bostami.darkToLightMobile();
+            bostami.preloader_load();
+            bostami.preloader_svg();
+            bostami.mobileMenu();
+            bostami.setDark();
+            bostami.setDark1();
+            bostami.setLight();
+            bostami.setLight1();
+            bostami.istopeActivation();
+            bostami.preloader();
+            },
+
+            // mobile view dark to light function
+
+            darkToLight: function () {
+            $(window).on("load", function () {
+                var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+                var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+                var themeToggleBtn = document.getElementById("theme-toggle");
+                
+                var themeToggleDarkIcon2 = document.getElementById("theme-toggle-dark-icon2");
+                var themeToggleLightIcon2 = document.getElementById("theme-toggle-light-icon2");
+                var themeToggleBtn2 = document.getElementById("theme-toggle2");
+                // Change the icons inside the button based on previous settings
+                if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+                ) {
+                themeToggleLightIcon?.classList?.remove("hidden");
+                themeToggleLightIcon2?.classList?.remove("hidden");
+                } else {
+                themeToggleDarkIcon?.classList?.remove("hidden");
+                themeToggleDarkIcon2?.classList?.remove("hidden");
+                }
+                themeToggleBtn?.addEventListener("click", function () {
+                // toggle icons inside button
+
+                themeToggleDarkIcon.classList.toggle("hidden");
+                themeToggleLightIcon.classList.toggle("hidden");
+                themeToggleDarkIcon2.classList.toggle("hidden");
+                themeToggleLightIcon2.classList.toggle("hidden");
+
+                // if set via local storage previously
+
+                if (localStorage.getItem("color-theme")) {
+                    if (localStorage.getItem("color-theme") === "light") {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    }
+
+                    // if NOT set via local storage previously
+                } else {
+                    if (document.documentElement.classList.contains("dark")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    }
+                }
+                })
+                themeToggleBtn2?.addEventListener("click", function () {
+                // toggle icons inside button
+
+                themeToggleDarkIcon.classList.toggle("hidden");
+                themeToggleLightIcon.classList.toggle("hidden");
+                themeToggleDarkIcon2.classList.toggle("hidden");
+                themeToggleLightIcon2.classList.toggle("hidden");
+
+                // if set via local storage previously
+
+                if (localStorage.getItem("color-theme")) {
+                    if (localStorage.getItem("color-theme") === "light") {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    }
+
+                    // if NOT set via local storage previously
+                } else {
+                    if (document.documentElement.classList.contains("dark")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    }
+                }
+                });
+            });
+            },
+
+            // preloader  function
+            preloader: function () {
+            $(window).on("load", function () {
+                var isMobile = /Android|webOS|iTeléfono|iPad|iPod|BlackBerry/i.test(
+                navigator.userAgent
+                )
+                ? true
+                : false;
+                var preloader = $("#preloader");
+
+                if (!isMobile) {
+                setTimeout(function () {
+                    preloader.addClass("preloaded");
+                }, 800);
+                setTimeout(function () {
+                    preloader.remove();
+                }, 2000);
+                } else {
+                preloader.remove();
+                }
+            });
+            },
+
+            preloader_load: function () {
+            $(window).on("load", function () {
+                var speed = 500;
+                setTimeout(function () {}, speed);
+            });
+            },
+
+            preloader_svg: function () {
+            $(window).on("load", function () {
+                jQuery("img.svg").each(function () {
+                var jQueryimg = jQuery(this);
+                var imgClass = jQueryimg.attr("class");
+                var imgURL = jQueryimg.attr("src");
+
+                jQuery.get(
+                    imgURL,
+                    function (data) {
+                    // Get the SVG tag, ignore the rest
+                    var jQuerysvg = jQuery(data).find("svg");
+
+                    // Add replaced image's classes to the new SVG
+                    if (typeof imgClass !== "undefined") {
+                        jQuerysvg = jQuerysvg.attr("class", imgClass + " replaced-svg");
+                    }
+
+                    // Remove any invalid XML tags as per http://validator.w3.org
+                    jQuerysvg = jQuerysvg.removeAttr("xmlns:a");
+
+                    // Replace image with new SVG
+                    jQueryimg.replaceWith(jQuerysvg);
+                    },
+                    "xml"
+                );
+                });
+            });
+            },
+
+            // moblie method toggle button function
+
+            mobileMenu: function () {
+            $(window).on("load", function () {
+                // menu toggle button
+                const menuOpen = document.getElementById("menu-toggle-open-icon");
+                const menuClose = document.getElementById("menu-toggle-close-icon");
+                const navbar = document.getElementById("navbar");
+                const menuToggleBtnTwo = document.getElementById("menu-toggle-two");
+                const menuToggleBtn = document.getElementById("menu-toggle");
+
+                menuToggleBtn?.addEventListener("click", () => {
+                console.log("click");
+                // toggle icons inside button
+                navbar.classList.toggle("hidden");
+                menuOpen.classList.toggle("hidden");
+                menuClose.classList.toggle("hidden");
+                });
+                menuToggleBtnTwo?.addEventListener("click", () => {
+                console.log("click");
+                // toggle icons inside button
+                navbar.classList.toggle("hidden");
+                menuOpen.classList.toggle("hidden");
+                menuClose.classList.toggle("hidden");
+                });
+            });
+            },
+
+            // set dark theme for home one
+
+            setDark: function () {
+            $(window).on("load", function () {
+                const darkButton = document.getElementById("dark");
+                var themeToggleDarkIcon = document.getElementById(
+                "theme-toggle-dark-icon"
+                );
+                var themeToggleLightIcon = document.getElementById(
+                "theme-toggle-light-icon"
+                );
+                // set dark mode
+                darkButton?.addEventListener("click", () => {
+                console.log("Dark clicked");
+                themeToggleLightIcon?.classList.remove("hidden");
+                themeToggleDarkIcon?.classList.add("hidden");
+                // if set via local storage previously
+                if (localStorage.getItem("color-theme")) {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+
+                    // if NOT set via local storage previously
+                } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                }
+                });
+            });
+            },
+
+            // set light theme for home one
+
+            setLight: function () {
+            $(window).on("load", function () {
+                const lightButton = document.getElementById("light");
+                var themeToggleDarkIcon = document.getElementById(
+                "theme-toggle-dark-icon"
+                );
+                var themeToggleLightIcon = document.getElementById(
+                "theme-toggle-light-icon"
+                );
+                lightButton?.addEventListener("click", () => {
+                console.log("light clicked");
+                themeToggleDarkIcon?.classList.remove("hidden");
+                themeToggleLightIcon?.classList.add("hidden");
+                // if set via local storage previously
+                if (localStorage.getItem("color-theme")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+
+                    // if NOT set via local storage previously
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                }
+                });
+            });
+            },
+
+            // set dark theme for home two
+
+            setDark1: function () {
+            $(window).on("load", function () {
+                const darkButton1 = document.getElementById("dark1");
+                var themeToggleDarkIcon = document.getElementById(
+                "theme-toggle-dark-icon"
+                );
+                var themeToggleLightIcon = document.getElementById(
+                "theme-toggle-light-icon"
+                );
+                darkButton1?.addEventListener("click", () => {
+                console.log("Dark clicked");
+                themeToggleLightIcon?.classList.remove("hidden");
+                themeToggleDarkIcon?.classList.add("hidden");
+                // if set via local storage previously
+                if (localStorage.getItem("color-theme")) {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+
+                    // if NOT set via local storage previously
+                } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                }
+                });
+            });
+            },
+
+            // set light theme for home two
+
+            setLight1: function () {
+            $(window).on("load", function () {
+                const lightButton1 = document.getElementById("light1");
+                var themeToggleDarkIcon = document.getElementById(
+                "theme-toggle-dark-icon"
+                );
+                var themeToggleLightIcon = document.getElementById(
+                "theme-toggle-light-icon"
+                );
+                lightButton1?.addEventListener("click", () => {
+                console.log("light clicked");
+                themeToggleDarkIcon?.classList.remove("hidden");
+                themeToggleLightIcon?.classList.add("hidden");
+                // if set via local storage previously
+                if (localStorage.getItem("color-theme")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+
+                    // if NOT set via local storage previously
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                }
+                });
+            });
+            },
+
+            // dark to light function for mobile devices
+
+            darkToLightMobile: function () {
+            $(window).on("load", function () {
+                var themeToggleDarkIconMobile = document.getElementById(
+                "theme-toggle-dark-icon-mobile"
+                );
+                var themeToggleLightIconMobile = document.getElementById(
+                "theme-toggle-light-icon-mobile"
+                );
+                var themeToggleBtnMobile = document.getElementById(
+                "theme-toggle-mobile"
+                );
+                // Change the icons inside the button based on previous settings
+                if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+                ) {
+                themeToggleLightIconMobile?.classList?.remove("hidden");
+                } else {
+                themeToggleDarkIconMobile?.classList?.remove("hidden");
+                }
+                themeToggleBtnMobile?.addEventListener("click", function () {
+                // toggle icons inside button
+                themeToggleDarkIconMobile.classList.toggle("hidden");
+                themeToggleLightIconMobile.classList.toggle("hidden");
+
+                // if set via local storage previously
+                if (localStorage.getItem("color-theme")) {
+                    if (localStorage.getItem("color-theme") === "light") {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    }
+
+                    // if NOT set via local storage previously
+                } else {
+                    if (document.documentElement.classList.contains("dark")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                    } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                    }
+                }
+                });
+            });
+            },
+
+            istopeActivation: function () {
+            // ----------------------------- isotop gallery
+
+            $(window).on("load", function () {
+                if ($("#isotop-gallery-wrapper").length) {
+                var $grid = $("#isotop-gallery-wrapper").isotope({
+                    // options
+                    itemSelector: ".isotop-item",
+                    percentPosition: true,
+                    masonry: {
+                    // use element for option
+                    columnWidth: ".grid-sizer",
+                    },
+                });
+
+                // filter items on button click
+                $(".isotop-menu-wrapper").on("click", "li", function () {
+                    var filterValue = $(this).attr("data-filter");
+                    $grid.isotope({ filter: filterValue });
+                });
+
+                // change is-checked class on buttons
+                $(".isotop-menu-wrapper").each(function (i, buttonGroup) {
+                    var $buttonGroup = $(buttonGroup);
+                    $buttonGroup.on("click", "li", function () {
+                    $buttonGroup.find(".is-checked").removeClass("is-checked");
+                    $(this).addClass("is-checked");
+                    });
+                });
+                }
+            });
+            },
+
+            // slick slider active function
+        };
+        bostami.m();
+        })(jQuery, window);
+
+
+
+        const carousel = document.querySelector('.carousel-inner');
+        const carouselItems = Array.from(carousel.children);
+        var i = 0;
+        function nextSlide() {
+        carousel.appendChild(carouselItems[i]);
+        i+=1;
+        if(i == carouselItems.length){i = 0}
+        }
+
+        setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    </script>
+</body>
+</html>
