@@ -3414,3 +3414,5 @@ input:-webkit-autofill:focus {
 		overflow: hidden;
 	}
 }
+
+.text-red{color:rgb(212, 24, 24);}
